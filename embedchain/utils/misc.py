@@ -449,6 +449,7 @@ def validate_config(config_data):
                     "google",
                     "mistralai",
                     "nvidia",
+                    "ollama",
                 ),
                 Optional("config"): {
                     Optional("model"): Optional(str),
@@ -470,6 +471,7 @@ def validate_config(config_data):
                     "google",
                     "mistralai",
                     "nvidia",
+                    "ollama",
                 ),
                 Optional("config"): {
                     Optional("model"): str,
