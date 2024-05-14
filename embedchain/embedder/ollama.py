@@ -11,7 +11,7 @@ class OllamaEmbedder(BaseEmbedder):
     def __init__(self, config: Optional[BaseEmbedderConfig] = None):
         super().__init__(config=config)
 
-        embeddings = OllamaEmbeddings(model_name=self.config.model)
+        embeddings = OllamaEmbeddings(model=self.config.model, base_url=config.api_base)
         embedding_fn = BaseEmbedder._langchain_default_concept(embeddings)
         self.set_embedding_fn(embedding_fn=embedding_fn)
 
