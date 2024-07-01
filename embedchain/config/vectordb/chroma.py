@@ -12,6 +12,7 @@ class ChromaDbConfig(BaseVectorDbConfig):
         dir: Optional[str] = None,
         host: Optional[str] = None,
         port: Optional[str] = None,
+        batch_size: Optional[int] = 100,
         allow_reset=False,
         chroma_settings: Optional[dict] = None,
     ):
@@ -34,4 +35,5 @@ class ChromaDbConfig(BaseVectorDbConfig):
 
         self.chroma_settings = chroma_settings
         self.allow_reset = allow_reset
+        self.batch_size = batch_size
         super().__init__(collection_name=collection_name, dir=dir, host=host, port=port)

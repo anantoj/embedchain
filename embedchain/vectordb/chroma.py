@@ -44,6 +44,7 @@ class ChromaDB(BaseVectorDB):
 
         self.settings = Settings(anonymized_telemetry=False)
         self.settings.allow_reset = self.config.allow_reset if hasattr(self.config, "allow_reset") else False
+        self.batch_size = self.config.batch_size
         if self.config.chroma_settings:
             for key, value in self.config.chroma_settings.items():
                 if hasattr(self.settings, key):
@@ -155,11 +156,11 @@ class ChromaDB(BaseVectorDB):
                 " Ids size: {}".format(len(documents), len(metadatas), len(ids))
             )
 
-        for i in tqdm(range(0, len(documents), self.BATCH_SIZE), desc="Inserting batches in chromadb"):
+        for i in tqdm(range(0, len(documents), self.batch_size), desc="Inserting batches in chromadb"):
             self.collection.add(
-                documents=documents[i : i + self.BATCH_SIZE],
-                metadatas=metadatas[i : i + self.BATCH_SIZE],
-                ids=ids[i : i + self.BATCH_SIZE],
+                documents=documents[i : i + self.batch_size],
+                metadatas=metadatas[i : i + self.batch_size],
+                ids=ids[i : i + self.batch_size],
             )
 
     @staticmethod
