@@ -10,6 +10,7 @@ class BaseEmbedderConfig:
         model: Optional[str] = None,
         deployment_name: Optional[str] = None,
         vector_dimension: Optional[int] = None,
+        endpoint: Optional[str] = None,
         api_key: Optional[str] = None,
         api_base: Optional[str] = None,
     ):
@@ -24,5 +25,6 @@ class BaseEmbedderConfig:
         self.model = model
         self.deployment_name = deployment_name
         self.vector_dimension = vector_dimension
+        self.endpoint = endpoint
         self.api_key = api_key
         self.api_base = api_base

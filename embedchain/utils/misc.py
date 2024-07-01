@@ -459,6 +459,7 @@ def validate_config(config_data):
                     Optional("title"): str,
                     Optional("task_type"): str,
                     Optional("vector_dimension"): int,
+                    Optional("endpoint"): str,
                 },
             },
             Optional("embedding_model"): {
