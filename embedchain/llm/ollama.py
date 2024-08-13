@@ -23,14 +23,19 @@ class OllamaLlm(BaseLlm):
 
     @staticmethod
     def _get_answer(prompt: str, config: BaseLlmConfig) -> Union[str, Iterable]:
-        callback_manager = [StreamingStdOutCallbackHandler()] if config.stream else [StdOutCallbackHandler()]
+        print(config)
+        print(config.stream)
+        if config.stream:
+            callbacks = config.callbacks if config.callbacks else [StreamingStdOutCallbackHandler()]
+        else:
+            callbacks = [StdOutCallbackHandler()]
 
         llm = Ollama(
             model=config.model,
             system=config.system_prompt,
             temperature=config.temperature,
             top_p=config.top_p,
-            callback_manager=CallbackManager(callback_manager),
+            callback_manager=CallbackManager(callbacks),
             base_url=config.base_url,
         )
 
