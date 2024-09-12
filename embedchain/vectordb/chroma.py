@@ -111,7 +111,7 @@ class ChromaDB(BaseVectorDB):
         )
         return self.collection
 
-    def get(self, ids: Optional[list[str]] = None, where: Optional[dict[str, any]] = None, limit: Optional[int] = None):
+    def get(self, ids: Optional[list[str]] = None, where: Optional[dict[str, any]] = None, limit: Optional[int] = None, offset: Optional[int] = None):
         """
         Get existing doc ids present in vector database
 
@@ -131,6 +131,8 @@ class ChromaDB(BaseVectorDB):
             args["where"] = self._generate_where_clause(where)
         if limit:
             args["limit"] = limit
+        if offset:
+            args["offset"] = offset
         return self.collection.get(**args)
 
     def add(
